@@ -1,0 +1,608 @@
+				Inheritance in Java:
+
+--one of the most important feature of OOP(Object oriented programming).
+
+Definition-
+Inheritance is a relationship[Parent-Child] between classes, it will bring variables
+and methods from one class[Super class / Base Class / Parent Class] to another
+class[Sub class / Derived Class / Child Class] in order to reuse.
+
+
+Note: In Java, Inheritance is represented in the form of the "extends" keyword.
+
+Inheritance represents the IS-A relationship which is also known as a parent-child
+relationship.
+example:
+Car is a Vehicle
+Orange is a Fruit
+Surgeon is a Doctor
+Dog is an Animal
+
+--------
+
+The main advantage of Inheritance in Java is:
+1. Code Reusability
+2. To get Runtime polymorphism (using method overriding)
+
+--------
+
+The new class that is created is known as subclass (child or derived class) and the
+existing class from where the child class is derived is known as superclass (parent or
+base class).
+
+===>some points of abstract class is in notes..revise that after teaching.<====
+
+---------
+
+*Example1:
+
+ //parent class
+ class Animal {
+	// methods and fields
+ }
+ 
+ //child class
+ class Dog extends Animal {
+	// methods and fields of Animal is inherited
+	// This dog class can have its own methods and fields as well
+ }
+
+-----
+
+*Example 2:
+
+//parent class
+class Animal {
+// field and method of the parent class
+String name;
+public void eat() {
+System.out.println("I can eat");
+}
+}
+
+// child class inherit from Animal
+//Dog is an Animal
+class Dog extends Animal {
+// new method in subclass
+public void display() {
+System.out.println("My name is " + name);
+}
+}
+
+class Main {
+public static void main(String[] args) {
+
+// create an object of the subclass
+Dog labrador = new Dog();
+
+// access field of superclass
+labrador.name = "Rohu";
+
+labrador.display();
+
+// call method of superclass
+// using object of subclass
+labrador.eat();
+
+}
+}
+
+-----
+Types of Inheritance:
+1. Single Inheritance
+2. Multilevel Inheritance
+3. Hierarchical Inheritance
+4. Multiple Inheritance
+5. Hybrid Inheritance
+
+---
+
+1)Single inheritance-
+ class B --> class A
+ 
+2)Multilevel inheritance-
+ class C --> class B --> class A
+ 
+3)Hierarchical inheritance-
+ class B
+ 			}--> class A
+ class C
+ 
+4)Multiple inheritance-
+			--> class A
+ class C }
+			--> class B
+			
+5)Hybrid ingeritance-
+			--> class B
+ class D } 					} --> class A
+			--> class C
+			
+------
+
+On the basis of class, there can be three types of inheritance in java: single, multilevel
+and hierarchical.
+In java programming, multiple and hybrid inheritance is supported through interface
+only. We will learn about interfaces later.
+
+------
+
+Note: Multiple inheritance is not supported in Java through class.
+
+-----
+
+--Single Inheritance:
+
+When a class inherits another class, it is known as single inheritance. In the example
+given below, the Dog class inherits the Animal class, so there is a single inheritance.
+
+class Animal{
+void eat(){
+System.out.println("eating...");
+}
+}
+
+class Dog extends Animal{
+void bark(){
+System.out.println("barking...");
+}
+}
+
+class Main{
+public static void main(String args[]){
+Dog d=new Dog();
+d.bark();
+d.eat();
+}
+}
+
+-----
+
+--Multilevel Inheritance:
+
+When there is a chain of inheritance, it is known as multilevel inheritance
+
+class Animal{
+void eat(){
+System.out.println("eating...");
+}
+}
+
+
+class Dog extends Animal{
+void bark(){
+System.out.println("barking...");
+}
+}
+
+
+class BabyDog extends Dog{
+void weep(){
+System.out.println("weeping...");
+}
+}
+
+
+class Main{
+public static void main(String args[]){
+BabyDog d=new BabyDog();
+d.weep();
+d.bark();
+d.eat();
+}
+}
+
+-----
+
+--Hierarchical Inheritance:
+
+When two or more classes inherit a single class, it is known as hierarchical inheritance
+
+Dog and Cat classes inherits the Animal class, so there is
+hierarchical inheritance.
+
+class Animal{
+void eat(){
+System.out.println("eating...");
+}
+}
+
+
+class Dog extends Animal{
+void bark(){
+System.out.println("barking...");
+}
+}
+
+
+class Cat extends Animal{
+void meow(){
+System.out.println("meowing...");
+}
+}
+
+
+class Main{
+public static void main(String args[]){
+Cat c=new Cat();
+c.meow();
+c.eat();
+
+//c.bark();//C.T.Error
+
+}}
+
+------
+
+***Why multiple inheritance is not supported in java at class level ?
+
+To reduce the complexity and simplify the language, multiple inheritance is not
+supported in java.
+
+Consider a scenario where A, B, and C are three classes. The C class inherits A and B
+classes. If A and B classes have the same method and you call it from child class
+object, there will be ambiguity to call the method of A or B class.
+
+Since compile-time errors are better than runtime errors, Java renders compile-time
+error if you inherit 2 classes. So whether you have same method or different, there will
+be compile time error.
+
+*Example-
+
+class A{
+void msg(){
+System.out.println("Hello");
+}
+}
+
+class B{
+void msg(){
+System.out.println("Welcome");
+}
+}
+
+class C extends A,B{                          //suppose if it were, compilation error
+
+public static void main(String args[]){
+  C obj=new C();
+
+  obj.msg();            //Now which msg() method would be invoked?
+
+}
+}
+
+-------
+
+				Method Overriding in Java:
+				
+As we know that object of a child’s class can access the method of its parent class also.
+but, if the child class object does not satisfy with the implementation of the inherited
+method, the child class can ``re-implement the inherited method`` with his implementation,
+this concept is known as Method Overriding in java
+
+Usage of Java Method Overriding:
+
+Method overriding is used to provide the specific implementation of a method which
+is already provided by its superclass.
+Method overriding is used for runtime polymorphism
+
+-----
+
+Rules for Java Method Overriding-
+1. The method must have the same name as in the parent class
+2. The method must have the same parameter as in the parent class.
+3. There must be an IS-A relationship (inheritance).
+
+-----
+	I Problem:
+Creating a class Vehicle as a parent class that has a run method, lets create another
+class call Bike as child of this Vehicle class and override the run method from the parent
+class.
+
+class Vehicle{
+
+//defining a method
+void run(){
+System.out.println("Vehicle is running");
+}
+}
+
+
+//Creating a child class
+class Bike extends Vehicle{
+//defining the same method as in the parent class
+
+@Override  <==imp
+void run(){
+
+System.out.println("Bike is running safely");
+}
+
+
+public static void main(String args[]){
+
+Bike obj = new Bike();//creating object
+obj.run();//calling method
+}
+}
+
+-----
+
+	We Problem:
+create a class Bank, with a method getRateOfInterest and create multiple child classes
+of This Bank class as SBI, ICICI and override the getRateOfInterest method in all the child classes
+
+class Bank{
+
+int getRateOfInterest(){
+return 0;
+}
+}
+
+
+//Creating child classes.
+class SBI extends Bank{
+
+int getRateOfInterest(){
+return 8;
+}
+}
+
+
+class ICICI extends Bank{
+
+int getRateOfInterest(){
+return 7;
+}
+}
+
+
+class AXIS extends Bank{
+
+
+int getRateOfInterest(){
+return 9;
+}
+}
+
+
+//Main class to create objects and call the methods
+class Main{
+
+public static void main(String args[]){
+
+SBI s=new SBI();
+ICICI i=new ICICI();
+AXIS a=new AXIS();
+
+System.out.println("SBI Rate of Interest: "+s.getRateOfInterest());
+System.out.println("ICICI Rate of Interest: "+i.getRateOfInterest());
+System.out.println("AXIS Rate of Interest: "+a.getRateOfInterest());
+
+}
+}
+
+
+Note: We can not override a static method :
+
+We should use @Override annotation to validate a valid method overriding at
+compile time.
+
+
+------------------------------------------------------------------
+
+				super keyword in Java:
+				
+The super keyword in Java is a reference variable that is used to refer to immediate
+parent class object.
+
+Whenever you create the instance of a subclass, an instance of parent class is created
+implicitly which is referred by the super reference variable.
+
+-----
+
+Usage of Java super Keyword-
+
+1. super can be used to refer to the immediate parent class instance variable.
+2. super can be used to invoke the immediate parent class method.
+3. super() can be used to invoke immediate parent class constructor.
+
+-----
+
+Example1: referring to the immediate parent class instance variable:
+
+class Animal{
+
+String color="white";
+}
+
+class Dog extends Animal{
+
+String color="black";
+
+
+void printColor(){
+System.out.println(color);//prints color of Dog class
+System.out.println(super.color);//prints color of Animal class
+				   -----------
+}
+}
+
+class Main{
+public static void main(String args[]){
+Dog d=new Dog();
+d.printColor();
+}
+}
+
+-----
+
+*Example2: referring to the immediate parent class instance method:
+
+class Animal{
+
+void eat(){
+System.out.println("eating...");
+}
+}
+
+
+class Dog extends Animal{
+
+void eat(){
+System.out.println("eating bread...");
+}
+void bark(){
+System.out.println("barking...");
+}
+void work(){
+super.eat();
+bark();
+}
+}
+
+
+class Main{
+public static void main(String args[]){
+Dog d=new Dog();
+d.work();
+}
+}
+
+**output-
+eating...
+barking...
+
+-----------------
+
+*Example3: invoking the parent class constructor-
+
+The first line in each constructor is call to the super constructor super();
+But it is there by defalut, meaning you don't have to write it.
+
+class Animal{
+
+Animal(){
+System.out.println("animal is created");
+}
+}
+
+
+class Dog extends Animal{
+
+Dog(){
+super(); <==
+System.out.println("dog is created");
+}
+}
+
+
+class Main{
+public static void main(String args[]){
+Dog d=new Dog();
+}
+}
+
+
+Note: As we know that default constructor is provided by the compiler automatically if
+there is no constructor. But, it also adds super() as the first statement.
+
+*Example:
+
+class Animal{
+
+Animal(){
+System.out.println("animal is created");}
+}
+
+
+class Dog extends Animal{
+Dog(){
+System.out.println("dog is created");
+}
+}
+
+
+class Main{
+public static void main(String args[]){
+Dog d=new Dog();
+}
+}
+
+
+***Output:
+animal is created
+dog is created
+
+--------------------------
+
+				We Problem: [skipping]
+				
+class Person{
+
+int id;
+String name;
+
+Person(int id,String name){
+this.id=id;
+this.name=name;
+}
+}
+
+
+class Employee extends Person{
+
+float salary;
+
+Employee(int id,String name,float salary){
+
+super(id,name);//reusing parent constructor <==
+
+this.salary=salary;
+}
+
+void display(){
+System.out.println(id+" "+name+" "+salary);}
+}
+
+
+class Main{
+
+public static void main(String[] args){
+
+Employee e1=new Employee(1,"ankit",45000f);
+e1.display();
+}
+}
+
+
+***output:
+1 ankit 45000
+
+----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

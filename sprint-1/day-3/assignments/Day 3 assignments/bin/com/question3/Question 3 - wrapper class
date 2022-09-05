@@ -1,0 +1,54 @@
+Q)Define 'Wrapper classes' in Java.
+
+Ans)
+
+--Wrapper classes provide a way to use primitive data types (int, boolean, etc..) as objects.
+--in other words, Classes representation of primitive data types are called as Wrapper Classes.
+
+--Primitive data types : Wrapper classes
+	byte : java.lang.Byte
+	short : java.lang.Short
+	int : java.lang.Integer
+	long : java.lang.Long
+	float : java.lang.Float
+	double : java.lang.Double
+	char : java.lang.Character
+	boolean : java.lang.Boolean
+	
+	
+--Sometimes you must use wrapper classes, for example when working with Collection objects,
+ such as ArrayList, where primitive types cannot be used.
+--Example: ArrayList<int> myNumbers = new ArrayList<int>(); // Invalid
+		   ArrayList<Integer> myNumbers = new ArrayList<Integer>(); // Valid
+		   
+--Creating wrapper objects-
+  To create a wrapper object, use the wrapper class instead of the primitive type.
+  
+#code-
+  public class Main {
+  public static void main(String[] args) {
+    Integer myInt = 5;
+    Double myDouble = 5.99;
+    Character myChar = 'A';
+    System.out.println(myInt);
+    System.out.println(myDouble);
+    System.out.println(myChar);
+  }
+}
+
+--since we are now working with objects, we can use certain methods to get information
+  about the specific object.
+--the toString() method, which is used to convert wrapper objects to strings.
+
+
+--In the following example, we convert an Integer to a String, 
+  and use the length() method of the String class to output the length of the "string":
+
+#code-
+public class Main {
+  public static void main(String[] args) {
+    Integer myInt = 100;
+    String myString = myInt.toString();
+    System.out.println(myString.length());
+  }
+}

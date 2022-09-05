@@ -1,0 +1,25 @@
+Q1) Write the difference between JRE, JDK and JVM? 
+
+Answer-
+
+A)JDK-
+	1.Definition- JDK (Java Development Kit) is a software development kit to develop applications in Java. In addition to JRE, JDK also contains number of development tools (compilers, JavaDoc, Java Debugger etc.).
+	2.Prime functionality- JDK is primarily used for code execution and has prime functionality of development.
+	3.Platform Independence- JDK is platform dependent i.e for different platforms different JDK required.
+	4.Tools- As JDK is responsible for prime development so it contains tools for developing, debugging and monitoring java application.
+	5.Implementation- JDK = Java Runtime Environment (JRE) + Development tools
+	
+B) JRE-
+	1.Definition- JRE (Java Runtime Environment) is the implementation of JVM and is defined as a software package that provides Java class libraries, along with Java Virtual Machine (JVM), and other components to run applications written in Java programming.
+	2.Prime functionality- On other hand JRE is majorly responsible for creating environment for code execution.
+	3.Platform Independence- Like of JDK JRE is also platform dependent.
+	4.Tools- On other hand JRE does not contain tools such as compiler or debugger etc. Rather it contains class libraries and other supporting files that JVM requires to run the program.
+	5.Implementation- JRE = Java Virtual Machine (JVM) + Libraries to run the application
+	
+c) JVM-
+	1.Definition- JVM (Java Virtual Machine) is an abstract machine that is platform-dependent and has three notions as a specification, a document that describes requirement of JVM 
+						implementation, implementation, a computer program that meets JVM requirements, and instance, an implementation that executes Java byte code provides a runtime environment for executing Java byte code.
+	2.Prime functionality- JVM on other hand specifies all the implementations and responsible to provide these implementations to JRE.
+	3.Platform Independence- JVM is platform independent.
+	4.Tools- JVM does not include software development tools.
+	5.Implementation- JVM = Only Runtime environment for executing the Java byte code

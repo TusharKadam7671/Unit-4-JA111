@@ -1,0 +1,483 @@
+				Topic - Dynamic or Runtime polymorphism:
+
+--------------------------------------------------------------------------
+
+It is a process in which a call to an overridden method is resolved at runtime rather than
+compile-time.
+In this process, an overridden method is called through the reference variable of a
+superclass. The determination of the method to be called is based on the object being
+referred to by the reference variable.
+
+---------------------------------
+
+Upcasting:
+
+If the reference variable of Parent class refers to the object of Child class, it is known as
+upcasting. For example:
+
+class A{ //Parent class
+--
+}
+class B extends A{ //Child class
+--
+}
+A a=new B();//upcasting, this is only possible if B class is a child class of A
+
+
+*Example:
+
+class Bike{
+
+void run(){
+System.out.println("running");
+}
+}
+
+
+class Splendor extends Bike{
+
+void run(){
+System.out.println("running safely with 60km");
+}
+public static void main(String args[]){
+Bike b = new Splendor();//upcasting
+b.run(); //
+}
+}
+
+*output:
+running safely with 60km.
+
+Explanation:  vvimp==>
+In this example, we are creating two classes Bike and Splendor. Splendor class extends
+Bike class and overrides its run() method. We are calling the run method by the
+reference variable of Parent class. Since it refers to the subclass object and subclass
+method overrides the Parent class method, the subclass method is invoked at runtime.
+Since method invocation is determined by the JVM not compiler, it is known as runtime
+polymorphism.
+
+--------------------------------------------------
+
+imp==>  Note: Runtime polymorphism can't be achieved by data members.
+		
+Example:
+
+class Bike{
+int speedlimit=90;
+}
+
+class Honda3 extends Bike{
+int speedlimit=150;
+
+public static void main(String args[]){
+
+Bike obj=new Honda3();
+System.out.println(obj.speedlimit);   //90
+
+}
+
+-----------------------------------------------------------------
+
+Java RunTime Polymorphism with Multilevel Inheritance:
+
+class Animal{
+
+void eat(){
+System.out.println("eating");
+}
+}
+
+
+class Dog extends Animal{
+
+void eat(){
+System.out.println("eating fruits");
+}
+}
+
+
+class BabyDog extends Dog{
+
+void eat(){
+System.out.println("drinking milk");
+}
+
+
+public static void main(String args[]){
+
+//syntax learn-->
+
+Animal a1,a2,a3;
+
+a1=new Animal();
+a2=new Dog();
+a3=new BabyDog();
+
+a1.eat();
+a2.eat();
+a3.eat();
+
+}
+}
+
+
+*output:
+eating
+eating fruits
+drinking Milk
+
+--------------------------------------------
+
+				Object Downcasting and instanceof operator:
+				
+	instanceof operator:
+The java instanceof operator is used to test whether the object is an instance of the
+specified type (class or subclass or an interface).
+The instanceof operator in java is also known as a type comparison operator because it
+compares the instance with a reference type. It returns either true or false. If we apply
+the instanceof operator with any reference variable that has a null value, it returns false.
+
+Example1:
+
+class Animal{
+public static void main(String args[]){
+Animal a=new Animal();
+
+System.out.println(a instanceof Animal);//true
+
+}
+}
+
+
+Note: An object of subclass type is also a type of parent class. For example, if
+Dog extends Animal then object of Dog can be referred by either Dog or Animal
+class.
+
+Example2:
+
+class Animal{
+--
+}
+class Dog extends Animal{//Dog inherits Animal
+
+public static void main(String args[]){
+
+Dog d=new Dog();
+
+System.out.println(d instanceof Dog);//true
+
+System.out.println(d instanceof Animal);//true
+
+}
+}
+
+---------------------------------------
+
+Object Downcasting:
+
+As we know that to a parent class variable we can assign the child class object also,
+and from that parent class variable if we try to call any overriden method then due to
+Runtime polymorphism the overriden method will be called. but if a parent class
+reference points to a child class object, with that parent class refernce we can not call
+the child class specific methods, which are not available inside the parent class.
+to call the child class specific method from the parent class reference variable we need
+to downcast the parent class variable to the appropriate child class object.
+
+Example:
+
+class Animal{
+void eat(){
+System.out.println("eating...");
+}
+}
+
+
+class Dog extends Animal{
+
+@Override
+void eat(){
+System.out.println("eating bread...");
+}
+
+//specific method of child class
+void bark(){
+System.out.println("barking...");
+}
+}
+
+
+class Main{
+
+public static void main(String args[]){
+
+Animal parent = new Dog();
+
+parent.eat(); //eating bread...
+
+//calling child class specific method with parent class variable
+parent.bark(); //C T Error
+
+//downcasting parent class variable to the child class object.
+//downcasting works fine at compile time
+
+Dog d = (Dog) parent;
+d.bark();
+}
+}
+
+Note: We can downcast the parent class variable to the child class object only if
+the Parent class variable points to the Child class object , otherwise it will throw a
+runtime exception called ``ClassCastException``.
+
+---------------------------
+
+Example:
+
+class Animal{
+
+void eat(){
+System.out.println("eating...");
+}
+}
+
+
+class Dog extends Animal{
+
+@Override
+void eat(){
+System.out.println("eating bread...");
+}
+
+//specific method of child class
+void bark(){
+System.out.println("barking...");
+}
+}
+
+
+class Main{
+
+void doSomething(Animal a){
+a.eat();
+if(a instanceof Dog){
+Dog d = (Dog)a;
+d.bark();
+}
+}
+
+
+public static void main(String args[]){
+
+Main main = new Main();
+
+main.doSomething(new Animal());  //first
+main.doSomething(new Dog());   //second
+
+}
+}
+
+Output-
+
+eating...   	  //for first
+eating bread...  //from second
+barking...  	//from second
+
+(*tk)
+
+---------------------------------------------------------
+
+				final keyword in Java:
+				
+The final keyword in java is used to restrict the user. The java final keyword can be
+used in many context. Final can be:
+
+1. variable
+2. method
+3. class
+
+If you make any variable final, you cannot change the value of a final variable(It will be
+constant)
+
+
+In Java, the final variable must be initialized before we use it, either at the time of
+declaration or inside the constructor of the class.
+
+If you make any method final, you cannot override it inside the child class.
+
+
+If you make any class as final, you cannot extend it. final class does not have the child
+class.
+
+
+---------------------------------------------------------------------
+
+				Object class In Java:
+
+The Object class is present in java.lang package. Every class in Java is directly or
+indirectly derived from the Object class. If a class does not extend any other class then
+it is a direct child class of the Object and if extends another class then it is indirectly
+derived. Therefore the Object class methods are available to all Java classes. Hence
+Object class acts as a root of inheritance hierarchy in any Java Program.
+
+The Object class is beneficial if you want to refer to any object whose type you don't
+know. Notice that the parent class reference variable can refer to the child class object,
+known as upcasting.
+
+Let's take an example, there is the getObject() method that returns an object but it can
+be of any type like Employee, Student etc, we can use Object class reference to refer to
+that object. For example:
+Object obj=getObject();//we don't know what object will be returned from this method
+
+------------------
+
+				Methods of Object class:
+				
+The Object class provides many methods. these methods are inherited in all the objects
+in java.
+				
+1. public final Class getClass() : returns the Class class object of this object. The
+Class class can further be used to get the metadata of this class.
+
+2. public int hashCode(): returns the hashcode number for this object.
+
+3. public boolean equals(Object obj) : compares the given object to this object.
+
+4. protected Object clone() throws CloneNotSupportedException : creates and
+returns the exact copy (clone) of this object.
+
+5. public String toString() : returns the string representation of this object.
+To be discussed after multithreading.
+
+1. public final void notify() : wakes up single thread, waiting on this object's monitor.
+
+2. public final void notifyAll() : wakes up all the threads, waiting on this object's
+monitor.
+
+3. public final void wait(long timeout)throws InterruptedException : causes the
+current thread to wait for the specified milliseconds, until another thread notifies
+(invokes notify() or notifyAll() method).
+
+4. public final void wait(long timeout,int nanos)throws InterruptedException:
+causes the current thread to wait for the specified milliseconds and nanoseconds,
+until another thread notifies (invokes notify() or notifyAll() method).
+
+5. public final void wait()throws InterruptedException: causes the current thread to
+wait, until another thread notifies (invokes notify() or notifyAll() method).
+
+6. protected void finalize()throws Throwable: is invoked by the garbage collector
+before object is being garbage collected.
+We will discuss about these methods in upcoming classes.
+
+-------------------------------------------------------------------
+
+				public String toString() method:
+
+The toString() provides a String representation of an object and is used to convert an
+object to String.
+
+The default toString() method for class Object returns a string
+consisting of the name of the class of which the object is an instance, the at-sign
+character `@’, and the unsigned hexadecimal representation of the hash code of the
+object. In other words, it is defined as:
+
+// Default behavior of toString() is to print class name, then
+// @, then unsigned hexadecimal representation of the hash code
+// of the object
+public String toString()
+{
+return getClass().getName() + "@" + Integer.toHexString(hashCode());
+}
+
+
+Note: Whenever we try to print any Object reference, then internally toString() method
+is called.
+
+It is always recommended to override the toString() method to get our own String
+representation of Object. For more on override of toString() method.
+
+class Student{
+
+int rollno;
+String name;
+String city;
+
+Student(int rollno, String name, String city){
+
+this.rollno=rollno;
+this.name=name;
+this.city=city;
+}
+
+
+public static void main(String args[]){
+
+Student s1=new Student(101,"Raj","lucknow");
+Student s2=new Student(102,"Vijay","ghaziabad");
+
+System.out.println(s1);//println method call s1.toString()
+System.out.println(s2);//println method call s2.toString()
+
+}
+}
+
+**output:
+Student@1fee6fc
+Student@1eed780
+
+--------------------------
+
+==>	Lets override the toString() method from the Object class to our Student class.
+				
+class Student{
+
+int rollno;
+String name;
+String city;
+
+Student(int rollno, String name, String city){
+
+this.rollno=rollno;
+this.name=name;
+this.city=city;
+}
+
+@Override
+public String toString(){//overriding the toString() method
+return rollno+" "+name+" "+city;
+}
+
+
+public static void main(String args[]){
+
+Student s1=new Student(101,"Raj","lucknow");
+Student s2=new Student(102,"Vijay","ghaziabad");
+
+System.out.println(s1);
+System.out.println(s2);
+}
+}
+
+**output:
+
+101 Raj lucknow
+102 Vijay ghaziabad
+
+--------------------------------------------------------------------
+====================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

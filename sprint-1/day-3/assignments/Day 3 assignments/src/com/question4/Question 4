@@ -1,0 +1,37 @@
+Q4) Explain why the following block of code will give a compile time error?
+public class Main {
+public static void main(String[] args) {
+
+	float f=3.3;
+	System.out.println(f);
+	}
+}
+
+
+
+Ans)
+
+--In java, we have float and double as floating point literals, 
+  where double is the default data type of floating point literals and not the float. 
+  This is the reason why java is telling that possible lossy conversion from double to float.
+--And reason for lossy conversion is because, double is bigger than float. 
+  When you try to fit-in the bigger one into the smaller one, you will get this error.
+  
+
+  
+--Possible conversion
+  1)float f=(float)3.3;
+  2)float f=3.3f;
+  
+#code-
+
+public class Main {
+public static void main(String[] args) {
+
+	float f=(float)3.3;
+	//or   float f=3.3f;
+
+	System.out.println(f);
+	
+	}
+}

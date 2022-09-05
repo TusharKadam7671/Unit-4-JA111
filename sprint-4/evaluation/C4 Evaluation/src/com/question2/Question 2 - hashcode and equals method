@@ -1,0 +1,28 @@
+Q.Explain about hashCode and equals method.
+Answer-
+
+equals() method-
+1.equals method belongs to java.lang.object class.
+2.this method is used to compare to objects
+3.this method return boolean value if both objects are same then it
+will return as true else false.
+4.but for objects to be same, they should have same memory location so we have to
+override this equals method and the other method is hashCode();
+5.syntax-
+	public boolean equals(Object obj);
+	
+hashCode() method-
+1.To be same for objects they should override equals method and at a same time
+should override this hashcode method also
+2.there is a contract between equal and hashcode method- if any objects are same
+by equals method then they should same by hashcode method also.
+3.so we have to override these two methods at a same time.
+4.hashcode method returns integer value
+5.syntx-
+	public int hashCode();
+	
+	
+	
+if equals method return false then hashcode method also return different values and
+if equals method return true then hashcode method return same hashcode int value.This
+is known as their contract.

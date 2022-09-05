@@ -1,0 +1,13 @@
+Early binding-
+1.Program execution is faster.
+2.It is a compile time process.
+3.Actual object is not used for binding.
+4.ex. methodoverloading.
+
+
+
+Late Binding-
+1.Program excution is slower.
+2.It is a runtime process.
+3.Actual object is used for binding.
+4.ex. methodoverriding.

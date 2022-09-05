@@ -1,0 +1,9 @@
+Q3) How does java achieve platform independency?
+
+Ans-
+Platform Independent means “write once and run anywhere”. Here in the programming, writing means compiling. 
+	Platform Independent means writing a piece of code on one operating system and that complied code is able to run on another operating system. 
+	Java is Platform Independent because of its Byte Code. 
+	When we write or (compile) the java code, it gets converted to Byte Code which can run on all operating systems requires JVM (Java Virtual Machine). 
+	JVM is also known as Interpreter which comes along JDK (Java Development Kit) and JRE (Java Run time Environment). 
+	JVM converts the ByteCode to the Machine Specific Code

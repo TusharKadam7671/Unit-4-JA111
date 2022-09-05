@@ -1,0 +1,338 @@
+Topic - Arrays and command line args.
+
+-------------------------------------------------
+
+Arrays in java-
+
+Arrays are used to store multiple values in a single variable, instead of declaring
+separate variables for each value.
+
+To declare an array, define the `variable type` with square brackets.
+
+		int[] marks;
+		
+*Example:
+If we want to store the names of 100 people then we can create an array of the string type that can
+store 100 names.
+		String[] names = new String[100];
+		
+Note: In Java array is a special type of object whose class is non-existence. whenever JVM
+encounters [], it will create an array object in the memory.
+		
+*example:
+int[] marks = new int[10];
+System.out.println(marks);// it will print the address of array object
+
+• The variables in the array are ordered, and each has an index beginning from 0.
+• The size of an array must be specified by int or short value and not long.
+
+Note: at the time of creating an array object, all the variables inside the array will be initialized
+with their default value.
+
+int[] marks = new int[10];
+System.out.println(marks[0]); //0
+System.out.println(marks[1]);//0
+System.out.println(marks[15]);//Runtime Exception: ArrayIndexOutOfBoundException <==imp
+
+Note: Inside every array object, there is a `non-static variable` called “length” is there, which will
+represent the size of an array.
+
+System.out.println(marks.length);//10
+
+--------------------------------------------------------------------------------------
+
+In Java there is two way to create an array :
+1. using new operator
+2. using curly bracket
+
+1. Using new operator:
+Using this approach we declare an array first and then we initialize each element of that array
+example:
+
+//declare an array
+int[] marks = new int[5];
+
+//initializing array
+marks[0]=100;
+marks[1]=120;
+marks[2]=150;
+--
+
+2. Using curly bracket:
+Using this approach, we declare and initialize an array in a single statement.
+example
+int[] marks = {100,120,150,180};
+
+--------------------------------------------------------------------------------
+
+I problem- Accessing Array Elements:
+
+Creating an integer array with some value and printing each elements from that array
+
+class Main {
+
+	public static void main(String[] args) {
+	
+// create an array
+int[] marks = {40, 40, 55, 25, 55};
+
+// access each array elements
+System.out.println("Accessing Elements of Array:");
+System.out.println("First Element: " + marks[0]);
+System.out.println("Second Element: " + marks[1]);
+System.out.println("Third Element: " + marks[2]);
+System.out.println("Fourth Element: " + marks[3]);
+System.out.println("Fifth Element: " + marks[4]);
+}
+}
+
+
+----------
+
+
+We can also `loop` through each element of the array. For example,
+
+class Main {
+
+public static void main(String[] args) {
+
+// create an array
+int[] marks = {58, 45, 52};
+
+// loop through the array
+// using for loop
+System.out.println("Using for Loop:");
+for(int i = 0; i < marks.length; i++) {
+System.out.println(marks[i]);
+}
+}
+}
+
+---------------
+
+We can also use the `for-each loop` to iterate through the elements of an array. For example,
+
+class Main {
+
+public static void main(String[] args) {
+// create an array
+int[] marks = {45, 42, 55};
+
+// loop through the array
+// using for loop
+System.out.println("Using for-each Loop:");
+for(int m : marks) {
+System.out.println(m);
+}
+}
+}
+
+------------------------------------------------------
+
+We Problem- Compute Sum and Average of Array Elements
+
+
+public class Main {
+
+public static void main(String[] args) {
+
+int[] numbers = {2, -9, 0, 5, 12, -25, 22, 9, 8, 12};
+int sum = 0;
+
+double average;
+
+// access all elements using for each loop
+// add each element in sum
+
+for (int number: numbers) {
+sum += number;
+}
+
+// get the total number of elements
+int arrayLength = numbers.length;
+
+// calculate the average
+// convert the average from int to double
+average = (double)sum / arrayLength;
+
+System.out.println("Sum = " + sum);
+System.out.println("Average = " + average);
+}
+}
+
+----------------------------------------------
+
+You Problem:
+
+
+student.java
+------------
+
+class Student
+{
+public int roll_no;
+public String name;
+
+Student(int roll_no, String name)
+{
+this.roll_no = roll_no;
+this.name = name;
+}
+
+public void printDetails(){
+System.out.println("Roll is :"+roll_no+" Name is :"+name);
+}
+
+}
+
+main.java
+------------
+
+class Main{
+
+public static void main(String[] args){
+
+Student[] students = new Student[3];
+
+students[0] = new Student(10,"Ram");
+students[1] = new Student(20,"Ramesh");
+students[2] = new Student(40,"Amit");
+
+for(Student student:students){
+student.printDetails();
+}
+
+
+}
+}
+
+
+Note: in the above example total `4 objects` are created in the memory one for the student array object
+and three for the student object.
+
+The above student array we can create by using curly bracket also.
+ex:
+Student[] students = {new Student(10,"Ram"),new Student(20,"Ramesh"),new Student(40,"Amit")};
+
+--------------------------------------------------------------
+Since in Java, arrays are treated as an object, the array variable will be treated as a reference variable,
+and the default value of any reference variable is null.
+example:
+
+		int[] numbers = null;
+---------------------------------------------------------------
+
+			Multi-Dimensional array in java-
+
+A multidimensional array is an array of arrays. That is, each element of a multidimensional array is an
+array itself. For example,
+
+int [][] matrix = new int[3][4]; //3 array type variable where each variable itself is an array of 4 variable
+
+----------
+
+we can initialize the 2-D array as follows :
+int[][] a = {
+{1, 2, 3},
+{4, 5, 6, 9},
+{7},
+};
+
+//see images for reference in the pdf notes for better understanding.
+
+-------------
+
+Print all elements of 2d array Using Loop
+
+
+class Main {
+
+public static void main(String[] args) {
+
+int[][] a = {
+
+{1, -2, 3},
+{-4, -5, 6, 9},
+{7},
+
+};
+
+for (int i = 0; i < a.length; ++i) {
+
+for(int j = 0; j < a[i].length; ++j) {
+
+System.out.println(a[i][j]);
+
+			}
+
+		}
+
+	}
+
+}
+
+-------------------------------------------
+
+				Command Line Argument:
+
+Pb.)Get 2 numbers from the CLA and print the sum of both numbers.
+if supplied number count is less than or more than 2 number then it should print the proper message
+like (”Please supply only 2 numbers”)
+
+Code)
+
+class Main {
+public static void main(String[] args) {
+
+if(args.length == 2){
+
+int num1 = Integer.parseInt(args[0]);
+int num2 = Integer.parseInt(args[1]);
+
+System.out.println("The Result is "+ (num1+num2));
+
+}else
+
+System.out.println("Please supply only 2 numbers");
+
+}
+
+}
+
+----------
+
+Note: Here we have used the parseInt method of the Integer class, which is a static method, used to
+convert the string representation of a number to the primitive number.
+
+To supply the command line argument with IntelliJ IDE :
+Step 1: right click on the Main class → select “modify run Configuration...”
+Step 2: Run this Main class once again.
+
+-------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

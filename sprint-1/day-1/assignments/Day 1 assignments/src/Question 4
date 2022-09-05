@@ -1,0 +1,22 @@
+Q4) What are features of Java and explain them?
+
+Ans-
+
+1.Simple:- Java is easy to learn and its syntax is quite simple, clean and easy to understand. 
+
+2.Object-Oriented:- Java is object-oriented, it supports all the OOPS characteristics. This makes java applications easy to develop and maintain, 
+						compared to structured programming language. 
+
+3.Portable and Platform Independent:- Java source code is compiled and converted into bytecode. this bytecode can run on multiple platforms 
+						i.e. Write Once and Run Anywhere(WORA), we can compile the java code in one Operating System and execute it on another Operating System. 
+
+4.Secure:- JAVA has provided an implicit component inside JVM in the form of a “Security Manager”  to provide implicit security against malicious code. 
+						Java has provided very good predefined implementations for almost all well-known network security. 
+						JAVA has provided a separate middleware service in JAAS [Java Authentication and Authorization Service], which provides web security. Auth, SSO. 
+
+5.Robust:- Robust means strong. Java is having a very good memory management system in the form of a heap memory management system, 
+						it is a dynamic memory management system, it allocates and deallocates memory for the objects at runtime. 
+						JAVA is having very good Exception Handling mechanisms, because, 
+						Java has provided a very good predefined library to represent and handle almost all the frequently generated exceptions in java applications.
+
+ 6.Multithreaded:- Java supports multithreading to enhance performance. by using this we can execute multiple functionalities simultaneously.

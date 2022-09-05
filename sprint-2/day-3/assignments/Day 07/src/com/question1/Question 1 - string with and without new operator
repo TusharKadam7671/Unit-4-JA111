@@ -1,0 +1,75 @@
+Is there any difference between creating a string with and without a new operator?  
+Explain with an example.
+-------------------------------------------------------------------
+Answer-
+
+1)Creating string without new operator / using string literal-
+
+a.Java String literal is created by using double-quotes. 
+For Example: String s="Welcome";
+
+b.In Java, the JVM maintains a string pool to store all of its strings inside
+the memory. The string pool helps in reusing the strings.
+	If this string already exists, the new string is not created. Instead,
+the new reference points to the already existing string "Welcome".
+	If the string doesn't exist, the new string "Welcome" is created
+inside this string pool area.
+
+c.Example-
+String s1 = "Welcome";
+String s2 = "Welcome";
+if(s1 == s2)
+System.out.println("same");
+else
+System.out.println("not same");
+output:
+same
+(Because both reference points to the same string in the string pool area)
+----------------------------------------------------------------------
+
+2)Creating string with a new operator-
+
+a.syntax-
+String s1 = new String("Welcome");
+
+b.Using new operator, the value of the string is not directly provided, hence
+new "Welcome" string is created inside the heap memory even though the
+"Welcome" string object is alredy present inside the string pool area.
+
+c.Example-
+String s1 = new String("Welcome");
+String s2 = new String("Welcome");
+if(s1 == s2)
+System.out.println("same");
+else
+System.out.println("not same");
+output:
+not same
+(Because both are differently created strings in the heap area).
+----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

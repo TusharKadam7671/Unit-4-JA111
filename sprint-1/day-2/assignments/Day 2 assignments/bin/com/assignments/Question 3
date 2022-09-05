@@ -1,0 +1,17 @@
+Q3) Explain the difference between local and instance variables?
+
+Ans-
+
+--Local variables-
+	1.A variable that is typically used in a method or a constructor
+	2.Do not have a default values
+	3.Local variables create when entering the method or a constructor
+	4.Local variables destroy when existing the method or a constructor
+	5.Access limited to method in which declared
+	
+--Instance variables-
+	1.A variable that is bounded to the object itself.
+	2.Can have default values
+	3.Instance variables create when creating an object
+	4.Instance variables destroy when destroying the object
+	5.Access controlled by public and private

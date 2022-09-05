@@ -1,0 +1,73 @@
+Q3) What is the use of ‘this’ and ‘super’ keywords in java ? Explain with an example.
+
+-------------------------------------------------------------------------------------
+
+Answer-
+
+				'this'
+
+1.The this keyword is a reference variable that refers to the current object. 
+There are the various uses of this keyword in Java. It can be used to refer to current class properties 
+such as instance methods, variable, constructors, etc. It can also be passed as an argument into 
+the methods or constructors. It can also be returned from the method as the current class instance.
+
+
+2.There are the following uses of this keyword.
+	-this can be used to refer to the current class instance variable.
+	-this can be used to invoke current class method (implicitly)
+	-this() can be used to invoke the current class constructor.
+	-this can be passed as an argument in the method call.
+	-this can be passed as an argument in the constructor call.
+	-this can be used to return the current class instance from the method.
+	
+--------------------------------------------------------------------------------------------
+
+				'super'
+				
+1.The super keyword in Java is a reference variable that is used to refer to the immediate parent class object. 
+Whenever you create the instance of the subclass, an instance of the parent class is created implicitly 
+which is referred by super reference variable. The super() is called in the class constructor implicitly 
+by the compiler if there is no super or this.
+
+
+2.There are the following uses of super keyword.
+
+	-super can be used to refer to the immediate parent class instance variable.
+	-super can be used to invoke the immediate parent class method.
+	-super() can be used to invoke immediate parent class constructor.
+	
+-----------------------------------------------------------------------------------------------
+
+There are the following differences between this and super keyword.
+
+1.The super keyword always points to the parent class contexts whereas 
+this keyword always points to the current class context.
+
+2.The super keyword is primarily used for initializing the base class variables within the derived class constructor whereas 
+this keyword primarily used to differentiate between local and instance variables when passed in the class constructor.
+
+3.The super and this must be the first statement inside constructor otherwise the compiler will throw an error.
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

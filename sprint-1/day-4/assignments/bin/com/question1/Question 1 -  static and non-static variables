@@ -1,0 +1,34 @@
+Non-static variable-
+1. Non-static variable also known as instance variable because memory is allocated whenever is created
+2. Non-static variables are specific to an object
+3. Non-static variable can access with an object reference.
+4. syntax- Obj_ref.variable_name
+5. These variables should not be preceded by any static keyword. Example:
+class A
+{
+int a;
+}
+6. Memory is allocated for these variables whenever an object is created.
+7. Memory is allocated multiple times whenever a new object is created.
+
+
+ 
+
+
+
+Static variable-
+1. Memory is allocated at the time of loading of class so that these are also known as class variables.
+2. static variable are common for every object which means these memory locations can be shareable by every object reference or same class.
+3. Static variable can access with class reference.
+4. syntax- class_name.variable_name
+5. These variables are preceded by static keyword. Example:
+class A
+{
+static int b;
+}
+6. Memory is allocated for these variables at the time of loading of the class.
+7. Memory is allocated for these variables only once in the program
+
+
+
+ 

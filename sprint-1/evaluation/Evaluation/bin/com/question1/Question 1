@@ -1,0 +1,12 @@
+Q1) Explain why Java is platform independent ?
+
+Ans.)
+
+1.Java is platform independent is because of 'byte code'.
+2.In java program we can write or compile on one operating system and can execute that code on 
+	another operating system i.e. 'WORA' - write ones and run anywhere
+3.While writing java code and after compiling it converts into byte code.
+4.'JVM' is responsible for executing that byte code and JVM is platform independent
+5.JVM provides runtime environment to execute the byte code and
+	that byte code is converted into 'machine specific code'.
+6.because of the WORA, JVM's platform independence, 'JAVA is platform independent'.

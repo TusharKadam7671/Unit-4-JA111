@@ -1,0 +1,11 @@
+Difference between method overloading and method overriding
+
+Method overloading-
+1)Method overloading increases the readability of the program.
+2)Method overloading occurs within the class.
+3)In this case, the parameters must be different.
+
+Method overriding-
+1)Method overriding provides the specific implementation of the method that is already provided by its superclass.
+2)Method overriding occurs in two classes that have Is-A relationship between them.
+3)In this case, the parameters must be the same.

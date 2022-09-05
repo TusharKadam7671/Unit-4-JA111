@@ -1,0 +1,1478 @@
+				Topic- Collection framework, List, Set Queue,
+					   equals and hashCode method, Comparable and
+					   Comparator
+
+						
+-----------------------------------------------------------------------
+				Collection Interface:
+				
+The Collection interface is the interface that is implemented by all 
+the classes in the collection framework. It declares the core/common 
+methods that every collection will have.
+
+They are as follows:
+
+Method --> Description-
+1.public boolean add(E e) -->  It is used to insert an element in this collection.
+
+2.public int size() -->  It returns the total number of elements in the
+collection.
+
+3.public boolean contains(Object element) -->  It is used to search an element.
+
+4.public boolean isEmpty() -->  It checks if collection is empty
+
+5.public void clear() -->  It removes the total number of elements from the
+collection.
+
+6.public boolean remove(Object element) -->  It is used to delete an element from the collection.
+
+(clear- deletes all elements and remove - delete only specified elements
+
+7.public boolean addAll(Collection<? extends E> c) -->  It is used to insert the specified collection elements in
+the invoking collection.
+
+8.public boolean removeAll(Collection<?> c) -->  It is used to delete all the elements of the specified
+collection from the invoking collection.
+
+9.public boolean containsAll(Collection<?> c) -->  It is used to search the specified collection in the
+collection.
+
+10.public Object[] toArray() -->  It converts collection into array.
+
+11.public Iterator iterator() -->  It returns an Iterator object.
+
+12.public <T> T[] toArray(T[] a) -->  It converts collection into array. 
+Here, the runtime type of the returned array is that of the specified array.
+
+13.default Stream<E> stream() -->  It returns a sequential Stream with the collection as
+its source
+
+14.default Stream<E> parallelStream() -->  It returns a possibly parallel Stream with the
+collection as its source.
+
+15.default boolean removeIf(Predicate<? super E> filter) -->  It is used to delete all the elements of the collection
+that satisfy the specified predicate.
+
+------------------------------------------------------------------------
+
+				List Interface:
+				
+--child interface of the collectio interface
+--inhibits list type data structure in which we can store the ordered
+	collection of objects
+--it can hava duplicate values.
+
+------------
+
+List interface is implemented by the classes ArrayList, LinkedList, Vector, and Stack.
+
+-List is index-based, it able to arrange all the elements as per indexing.
+-List is able to allow duplicate elements.
+-List is following insertion order.
+-List is able to allow any number of null values.
+
+--------
+
+--In addition to all the methods of the Collection Interface, 
+List interface defines some other methods as well, which are
+applicable to only List interface implemented classes.
+
+	They are :
+
+1.public void add(int index, Object obj): 	It able to add the specified element at the specified index value.
+2.public Object set(int index, Object obj): 	Replaces the element at the specified position in this list with the specified
+element.
+3.public Object get(int index): 	Returns the element at the specified position in this list.
+4.public Object remove(int index): 	It will remove and return an element available at the specified index value.
+5.public int indexOf(Object obj): 	It will return an index value where the first occurrence of the specified element.
+
+
+-----------------------------------------------------------------------
+
+		Implementation classes of List interface:
+		
+		1. ArrayList:
+		
+The ArrayList class implements the List interface. It uses a dynamic array to store the elements.
+It dynamically increase and decrease in size.
+ArrayList is the best choice if our frequent operation is retrieval(पुनर्प्राप्ती).
+
+*Example:
+
+ArrayList<String> al = new ArrayList<>();
+
+-----
+
+In the above statement we have created an empty ArrayList class object which can hold multiple String objects.
+
+The default initial capacity of the ArrayList is 10.
+Once the ArrayList reaches to the maximum capacity, then internally a new ArrayList object will be created in the memory
+automatically with following formula:
+
+newCapacity = (currentCapacity * 3/2)+1;
+
+----------
+
+We can create an ArrayList object with different initial capacity as well.
+
+*Example:
+
+ArrayList<String> al = new ArrayList<>(100); // here initial capacity will be 100
+
+----------
+
+*Example:
+
+import java.util.ArrayList;		<==remember
+
+class Main {
+
+public static void main(String args[]) {
+
+ArrayList<String> al = new ArrayList<>();
+
+al.add("one");
+al.add("two");
+al.add("three");
+al.add("one");//duplicate element
+al.add(null);
+al.add("four");
+al.add(null); //duplicate null
+
+System.out.println(al);
+System.out.println(al.size());
+
+}
+}
+
+*Output:
+
+[one, two, three, one, null, four, null]
+7
+
+Note: All the collection classes internally overrides the toString() method, so when
+we print the object of the collection classes, it will print the elements inside
+the [] square bracket, instead of printing the address.
+
+-----------------------------------------------------------------------
+
+			Traversing the List type of collection elements one by one:
+				
+List type of collection follows the zero based index, there are many way to traverse the element from the List implemented
+classes:
+
+*Example-
+
+	1. Using normal for-loop:
+	
+for(int i=0;i<al.size();i++){		//al.size()
+System.out.println(al.get(i));		//al.get(i)
+}
+
+	2. Using enhanced for-loop:
+	
+for(String s: al){
+System.out.println(s);
+}
+
+	3. Using Iterator:			<==important.
+	
+Iterator<String> itr= al.iterator();
+
+while(itr.hasNext()){
+
+String s= itr.next();
+System.out.println(s);
+
+}
+
+etc.
+
+--------------------------------------------------------------------
+
+****Note: All the collection classes does not allows the primitives types, it only accept the objects.
+
+so if we want to store any primitive values, we need to store it in the form of corresponding wrapper classes. 
+Internally collection classes uses auto-boxing and auto-unboxing feature to store the primitive 
+in the form of corresponding wrapper classes objects.
+
+*Example:
+ArrayList<Integer> al = new ArrayList<>();
+al.add(10);
+al.add(12);
+
+-------------------
+
+				Auto boxing and Auto unboxing:
+				
+The automatic conversion of primitive data types into its equivalent Wrapper type is known as boxing and opposite
+operation is known as unboxing. This is the new feature of Java5. So java programmer doesn't need to write the
+conversion code.
+
+The main advantage of Autoboxing and unboxing is, no need of conversion between primitives and Wrappers manually
+so less coding is required.
+
+*Example-
+
+int x = 10;
+//lets convert this primitive to the corresponding wrapper object
+
+Integer i1 = Integer.valueOf(x); // boxing
+
+Integer i2 = x; //autoboxing
+
+or
+
+Integer i3 = 10; //autoboxing
+
+
+Unboxing:
+
+int x = i3.intValue(); //unboxing
+
+int x = i3; // auto-unboxing
+
+-----------------------------
+
+*Example:
+
+import java.util.ArrayList;
+
+class Main {
+
+public static void main(String args[]) {
+
+ArrayList<Integer> al = new ArrayList<>();
+
+al.add(10);
+al.add(20);
+al.add(30);
+al.add(40);
+al.add(50);
+
+for(int x: al){
+System.out.println(x);
+}
+
+}
+}
+
+
+Note: we can call all the methods defined inside the Collection interface on the ArrayList object.
+
+*Example: Searching an element:
+
+import java.util.ArrayList;
+
+class Main {
+
+public static void main(String args[]) {
+
+ArrayList<Integer> al = new ArrayList<>();
+
+al.add(10);
+al.add(20);
+al.add(30);
+al.add(40);
+al.add(50);
+
+System.out.println(al.contains(20));
+System.out.println(al.contains(80));
+
+}
+}
+
+
+*Output:
+true
+false
+
+----------------------
+
+*Example: converting an ArrayList object to the Object array
+
+import java.util.ArrayList;
+
+class Main {
+
+public static void main(String args[]) {
+
+ArrayList<Integer> al = new ArrayList<>();
+
+al.add(10);
+al.add(20);
+al.add(30);
+al.add(40);
+al.add(50);
+
+Object[] or= al.toArray();
+
+for(Object o:or){
+int x= (Integer)o;
+System.out.println(x);
+}
+
+}
+}
+
+----------------------------
+
+				I problem-
+				
+		coded(Student.java,Main.java)
+		
+-----------------------------
+==========================================================================
+
+				LinkedList class:
+				
+This class is another implementation of the List interface, it internally uses the doubly linked list data structure. we can
+add and remove data from both end.
+
+This class is almost the same as ArrayList class, i.e. it also maintains the insertion order, and allows the duplicate
+element.
+
+LinkedList class is the best choice if our frequent operation is insertion or deletion of the elements from the middle
+because no shifting is required.
+
+		NULL -->  10  -->  20  -->  30  -->  NULL
+				  (doubly linked list)
+				  
+*Syntax-
+
+		LinkedList<String> list = new LinkedList<>();
+
+Here, The capacity concept is not applicable.
+
+----------------------------------------------------------------------
+
+				Vector class:
+
+This class is also one of the implementation classes of List interface.
+
+This class is also same as the ArrayList class with following differences:
+
+Methods of the ArrayList class is not synchronized, whereas most of the methods of the Vector class is
+synchronized.
+
+*Example:
+
+Vector<String> v = new Vector<>();
+
+--------------------------------------
+
+				Stack class:
+				
+The stack is the subclass of the Vector class. It implements the last-in-first-out data structure, i.e., Stack. 
+The stack contains all of the methods of the Vector class and also 
+provides its methods like boolean push(), boolean peek(), boolean push(object o), which defines its properties.
+
+*Example:
+
+import java.util.Stack;		<==imp
+
+public class Main {
+
+public static void main(String args[]) {
+
+Stack<String> stack = new Stack<String>();		<==
+
+stack.push("A");
+stack.push("B");
+stack.push("C");
+stack.push("D");
+stack.push("E");
+
+stack.pop(); //remove the last element
+
+for(String s:stack){
+System.out.println(s);
+}
+
+}
+}
+
+*Output:
+A
+B
+C
+D
+
+-------------------------------------------------------
+
+Note: To the variable of List we can store any of its implementation object by this way we can achieve the
+Runtime polymorphism.
+
+*Example:
+
+List<String> list1 = new ArrayList<>();
+List<String> list2 = new LinkedList<>();
+List<String> list3 = new Vector<>();
+List<String> list4 = new Stack<>();
+
+------------------------------------------------------------
+
+				Set Interface:
+				
+This interface extends the Collection interface. It represents the *unordered* set of elements which *doesn't allow* us to
+store the *duplicate* items.
+
+This Set is implemented by HashSet, LinkedHashSet, and TreeSet classes.
+
+Set<data-type> s1 = new HashSet<>();
+Set<data-type> s2 = new LinkedHashSet<>();
+Set<data-type> s3 = new TreeSet<>();
+				
+------------------------------------------------
+
+				HashSet class:
+				
+HashSet class implements Set Interface.
+
+It does not allow the duplicate elements and Insertion order will not be preserved.
+
+At most one null value we can add in HashSet object.
+
+If our frequent operation is **searching**, then HashSet class is the best choice, because it internally uses hashing
+technique to store the objects.
+
+O(1):- is the time complexity of searching any element by using hashing.
+
+*Example:
+
+HashSet<String> hs = new HashSet<>();
+
+*Example:
+
+import java.util.HashSet;
+
+public class Main {
+
+public static void main(String args[]) {
+
+HashSet<String> hs = new HashSet<>();
+
+hs.add("Delhi");
+hs.add("Mumbai");
+hs.add("Chennai");
+hs.add("Pune");
+hs.add("Delhi"); //duplicate element
+hs.add(null); //adding null
+hs.add("Bangaluru");
+
+System.out.println(hs);
+
+}
+}
+
+Output:
+[null, Delhi, Chennai, Bangaluru, Pune, Mumbai]
+
+Note: Since Set does not follow the index, so we can not access the elements one by one from any of the Set
+implemented classes, so to traverse the elements of the Set implemented classes
+
+we can not use normal for-loop, but we can use enhanced for-loop or Iterator to traverse elements of a Set implemented
+classes.
+
+---------------------------------------------------------------
+
+				LinkedHashSet class:
+				
+It is the child class of the HashSet class .
+
+This class is similar to the HashSet class, but it will preserve the insertion order.
+
+*Example:
+
+import java.util.LinkedHashSet;
+
+public class Main {
+
+public static void main(String args[]) {
+
+LinkedHashSet<String> lhs = new LinkedHashSet<>();
+
+lhs.add("Delhi");
+lhs.add("Mumbai");
+lhs.add("Chennai");
+lhs.add("Pune");
+lhs.add("Delhi"); //duplicate element
+lhs.add(null); //adding null
+lhs.add("Bangaluru");
+
+System.out.println(lhs);
+
+}
+}
+
+*Output:
+[Delhi, Mumbai, Chennai, Pune, null, Bangaluru]
+
+-------------------------------------------------------------
+
+				equals() and hashcode() method in Java:
+				
+The Object class defines both the equals() and hashCode() methods, which means that these two methods are implicitly
+defined in every Java class, including the ones we create:
+We need to override these two methods inside our java classes if we want to make 2 object of our java class logically
+equal.
+
+*Example-
+
+Student s1 = new Student(10,"Ram",500); //roll,name,marks
+Student s2 = new Student(10,"Ram",500); //roll,name,marks
+
+Note: technically at memory level both objects are different, but if we want to make
+both object s1 and s2 equal logically then we need to override both
+method inside the Student class.
+
+--------------
+
+				equals() method:
+				
+The java equals() is a method of *lang.Object class*, and it is used to *compare two objects*.
+
+To compare two objects that whether they are the same, it compares the values of both the object's attributes.
+By default, two objects will be the same only if stored in the same memory location.
+
+*Syntax:
+
+public boolean equals(Object obj)
+
+It takes the reference object as the parameter, with which we need to make the comparison. and returns the true if both
+the objects are the same, else returns false.
+
+*General Contract of equals() method:
+
+There are some general principles defined by Java.
+that must be followed while implementing the equals() method in Java. The equals() method must be:
+
+-reflexive: 	An object x must be equal to itself, which means, for object x, equals(x) should return true.
+-symmetric: 	for two given objects x and y, x.equals(y) must return true if and only if y.equals(x) returns true.
+-transitive: 	for any objects x, y, and z, if x.equals(y) returns true and y.equals(z) returns true, then x.equals(z) should
+				return true.
+-consistent: 	for any objects x and y, the value of x.equals(y) should change, only if the property in equals() changes.
+-For any object x, the equals(null) must return false.
+
+In Object class this equals() method is defiened as follows:
+		public boolean equals(Object o){
+		if(o == null)
+		return false;
+		else
+		return this == o;
+		}
+
+----------------------------------------------------------------------------------
+
+				hashCode() method:
+				
+A hashcode is an integer value associated with every object in Java, facilitating the hashing in hash tables.
+
+To get this hashcode value for an object, we can use the hashcode() method in Java. It is the means hashcode()
+method that returns the integer hashcode value of the given object.
+
+Since this method is defined in the Object class, hence it is inherited by user-defined classes also.
+
+The hashcode() method returns the same hash value when called on two objects, which are equal according to the
+equals() method. And if the objects are unequal, it usually returns different hash values.
+
+*Syntax:
+
+public int hashCode()
+
+It returns the hash code value for the given objects.
+
+-----------------
+
+**Contract for hashcode() method in Java:
+
+If two objects are the same as per the equals(Object) method, then if we call the hashCode() method on each of the two
+objects, it must provide the same integer result.
+
+Note: As per the Java documentation, both the methods should be overridden to get the complete equality
+mechanism; using equals() alone is not sufficient. It means, if we override the equals(), we must override the
+hashcode() method.
+
+Note: HashSet and LinkedHashSet class internally uses equals and hashCode method to identify the duplicate objects.
+
+----------------------------------------------------------------------------------
+
+					We Problem:
+					
+Let’s Override the equals and hashCode method inside the Student class, to make 2 student object equal logically if their
+roll, name and marks is same. so that if we try to add 2 student objects inside a *HashSet* or *LinkedHashSet* class, then it
+will ignore the duplicate student object.
+
+//Student.java
+
+public class Student {
+
+private int roll;
+private String name;
+private int marks;
+
+public Student() {
+}
+
+public Student(int roll, String name, int marks) {
+this.roll = roll;
+this.name = name;
+this.marks = marks;
+}
+
+@Override
+public boolean equals(Object o) {
+if (this == o)
+return true;
+Student s1 = this;
+Student s2 = (Student) o;
+return s1.roll == s2.roll && s1.marks == s2.marks && s1.name.equals(s2.name);
+}
+
+@Override
+public int hashCode() {
+return roll;
+}
+
+public int getRoll() {
+return roll;
+}
+
+public void setRoll(int roll) {
+this.roll = roll;
+}
+
+public String getName() {
+return name;
+}
+
+public void setName(String name) {
+this.name = name;
+}
+
+public int getMarks() {
+return marks;
+}
+
+public void setMarks(int marks) {
+this.marks = marks;
+}
+
+@Override
+public String toString() {
+return "Student{" +
+"roll=" + roll +
+", name='" + name + '\'' +
+", marks=" + marks +
+'}';
+}
+}
+
+-----
+
+//Main.java
+
+import java.util.HashSet;
+
+import java.util.Set;
+
+public class Main {
+
+public static void main(String args[]) {
+
+Set<Student> students = new HashSet<>();
+
+students.add(new Student(10,"Ram",500));
+students.add(new Student(12,"Vishnu",600));
+students.add(new Student(10,"Ram",500)); //duplicate object
+students.add(new Student(14,"Srinu",600));
+
+System.out.println(students.size());
+System.out.println(students);
+
+}
+}
+
+
+*Output:
+3
+[Student{roll=10, name='Ram', marks=500}, Student{roll=12, name='Vishnu', marks=600}, Student{roll=14, name='Srinu', marks=600}]
+
+---------------------------------------------------------------------------------
+
+					TreeSet class:
+					
+This class is the implementation of Set and SortedSet interface.
+
+In this implementation, objects are sorted and stored in ascending order according to their natural order.
+The TreeSet uses a self-balancing binary search tree.
+Java TreeSet class contains unique elements only like HashSet.
+Java TreeSet class doesn't allow null element. even a single null is also not allowed otherwise it throws
+NullPointerException at runtime.
+
+-----------------
+
+Example:
+
+import java.util.TreeSet;
+
+class Main{
+
+public static void main(String args[]){
+
+TreeSet<String> ts=new TreeSet<String>();
+
+ts.add("Delhi");
+ts.add("Mumbai");
+ts.add("Chennai");
+ts.add("Bangaluru");
+
+System.out.println(ts);
+
+}
+}
+
+*Output:
+[Bangaluru, Chennai, Delhi, Mumbai] //In sorted order
+
+-----------------------------------------------------------------
+
+Note: TreeSet class by default only accept the Comparable object. 
+if we try to add any non-comparable object inside the
+TreeSet object, then at runtime it will throw a ClassCastException.
+
+------------------------------------------------------------------
+
+				#Comparable interface in java:
+
+In Java, Comparable is an interface belongs to java.lang package. which is having only one method.
+
+public int compareTo(Object obj);
+
+-----------------------------------
+
+In order to add our User-defined java classes object inside the TreeSet, 
+we should implement the Comparable interface
+
+inside our User-defined class and need to specify the sorting logic by overriding this compareTo method.
+
+The compareTo method is used to compare the current object with the specified object. It returns:
+
+-positive integer, if the current object is greater than the specified object.
+-negative integer, if the current object is less than the specified object.
+-zero, if the current object is equal to the specified object.
+
+---------------------------------
+
+Note: All the Wrapper classes and String class internally implements the Comparable interface.
+
+------
+*Example: implementing the Comparable interface inside the Student class. According to the roll
+number.
+
+==> coded main2.java and student2.java <==
+
+package com.masai;
+
+public class Student implements Comparable<Student>{		<==implements the comparable..imp
+
+private int roll;
+private String name;
+private int marks;
+
+public Student() {
+}
+
+public Student(int roll, String name, int marks) {
+this.roll = roll;
+this.name = name;
+this.marks = marks;
+}
+
+public int getRoll() {
+return roll;
+}
+public void setRoll(int roll) {
+this.roll = roll;
+}
+public String getName() {
+return name;
+}
+public void setName(String name) {
+this.name = name;
+}
+public int getMarks() {
+return marks;
+}
+public void setMarks(int marks) {
+this.marks = marks;
+}
+
+@Override
+public String toString() {
+return "Student{" +
+"roll=" + roll +
+", name='" + name + '\'' +
+", marks=" + marks +
+'}';
+}
+
+@Override
+public int compareTo(Student student) {
+if(this.roll > student.roll)
+return +1;
+else if(this.roll < student.roll)
+return -1;
+else
+return 0;
+}
+}
+
+
+*Now we can add the Student object inside the TreeSet object.
+*Example:
+
+import java.util.TreeSet;
+
+class Main{
+
+public static void main(String args[]){
+
+TreeSet<Student> ts = new TreeSet<>();
+
+ts.add(new Student(20,"Amit",520));
+ts.add(new Student(15,"Suresh",550));
+ts.add(new Student(22,"Ajay",540));
+ts.add(new Student(18,"Rajesh",590));
+
+System.out.println(ts);
+
+}
+}
+
+**Overriding to compareTo method to sort the object according to the name.
+
+@Override
+public int compareTo(Student student) {
+
+return name.compareTo(student.name);
+
+}
+
+
+---------------------------------------------------------------
+
+				#Comparator interface in java:
+				
+If we want to define the sorting logic for objects of some class, *outside that class* then we can use Comparator interface.
+
+This Comparator interface belongs to java.util package.this interface also has *only abstract method* :
+
+public int compare(Object obj1, Object obj2);
+
+Let’s define the sorting logic of Student object outside the Student class, i.e. inside the another class using Comparator
+interface.
+
+(coded) main3.java
+
+//StudentRollComparator.java
+
+import java.util.Comparator;
+
+public class StudentRollComparator implements Comparator<Student> {	<==imp
+
+@Override
+public int compare(Student s1, Student s2) {
+
+if(s1.getRoll() > s1.getRoll())
+return +1;
+else if(s1.getRoll() < s2.getRoll())
+return -1;
+else
+return 0;
+
+}
+}
+
+Now we can add the Student object inside the TreeSet collection object by mentioning this “StudentRollComparator”
+class in the constructor of the TreeSet object.
+
+In this case Student object need not implement the Comparable interface any more.
+
+*Example:
+
+import java.util.TreeSet;
+
+class Main{
+
+public static void main(String args[]){
+
+TreeSet<Student> ts = new TreeSet<>(new StudentRollComparator());		<==here
+
+ts.add(new Student(20,"Amit",520));
+ts.add(new Student(15,"Suresh",550));
+ts.add(new Student(22,"Ajay",540));
+ts.add(new Student(18,"Rajesh",590));
+
+System.out.println(ts);
+
+}
+}
+
+------------------------------------------------------------------
+
+				Difference between Comparable and Comparator:
+				
+Comparable-
+-Comparable interface belongs to java.lang package 
+-If we want to specify the sorting logic of a class
+object within the same class , we need to use
+Comparable
+-With the help of Comparable we can define only
+one sorting logic within a class.
+-Here method name is: public int compareTo(Object
+obj)
+
+
+
+Comparator-
+-Comparator interface belongs to java.util package
+-If we want to specify the sorting logic of a class
+object outside that class then we should use
+Comparator
+-With the help of Comparator we can define
+multiple sorting logic of a class object inside
+multiple classes.
+-Here method name is : public int compare(Object
+obj1, Object obj2)
+
+
+-----------------------------------------------------------------------
+
+				You Problem: (not tried)
+				
+Create a Employee Bean class with following 3 fields:
+int empId, String name, int salary.
+Implement the Comparable interface within the Employee class and define the sorting logic according to the salary,
+and if 2 Employee salary is same then sort them according to their name.
+Create a Main class with main method and inside the main class create a TreeSet class object which can hold
+multiple Employee object.
+Add 5 Employee object with some dummy data and print each Each Employee object one by one from the TreeSet
+object.
+
+------------------------------------------------------------------------------
+
+
+				Class Notes - all days at one place
+				
+Collection: if we want to represent a group of objects as a single unit (single object)
+then we should use collection.
+
+--Collection of objects..
+
+------
+
+Framework:
+---------------
+
+--the main objective of a f/w is ease developer work.
+
+--it is semimplemented  architecture.
+
+--A f/w comprises some abstract design with built-in behaviour(functionality),
+in order to use it, we need to insert our functionality in various places of f/w.
+
+--A s/w f/w is a universal, resuable s/w platform to develop s/w applications,
+products or solutions.
+
+
+Data structure:
+------------------
+
+--array
+--stack
+--queue
+--LinkedList
+--searching
+--sorting
+
+Collection f/w:
+============
+
+--it defines several classes and interfaces which can be used to represent/arrange
+group of objects as single unit(object)
+
+
+--each collection classes are like a container or a bag, where we can hold multiple 
+objects.
+
+--it is basically readymade implemented DS.
+
+
+---we can group/hold/store multiple object as a single object by using array.
+
+--in Java array is also one type of object
+
+
+--5 student object as a single object.
+
+Student[] students = new Student[5]; // here one array object is created and 6 
+variables are created.
+
+students // ref type array variable
+
+student[0] // ref type Student  class variable
+student[1] // ref type Student  class variable
+student[2] // ref type Student  class variable
+student[3] // ref type Student  class variable
+student[4] // ref type Student  class variable
+
+student[0] = new Student(10,"N1",780);
+student[1] = new Student(12,"N2",880);
+student[2] = new Student(13,"N3",680);
+student[3] = new Student(14,"N4",580);
+student[4] = new Student(15,"N5",680);
+
+
+limitations of array:
+------------------------
+
+1. size is fixed, we can not increase or decrease it dynamically.
+
+2.it supports homogenious type of Data/element.
+
+--this limitation we can overcome by taking Object class array.
+
+
+Object[] objs= new Object[3];
+
+objs[0]=new Student();
+objs[1]=new Employee();
+objs[2]=new Product();
+
+
+3. array concept is not implemented based on readymade method support.
+for each and every requirement we need to write our own logic,.
+even for printing the elements from an array we need to write for loop.
+
+--in each array object we have only one non-static variable i.e 'length'.
+
+--to overcome the above limitation we need to use collection f/w.
+
+feature of Collection f/w:
+====================
+
+--collections are growable and shinkable in nature.
+
+--collection can hold both homogenoius and heterogenious type of element.
+
+--every collection classes are implemented based on some standard data-structure, hence readymade method
+support is available for most of the requirements.
+
+
+***All(99%) the collection f/w related classes and interfaces belongs to java.util package.
+
+--collection f/w having 2 section:
+
+1. normal collection (here we manage object uniformally/individually/ singular manner).
+
+2. Map (here we manage objects in key-value pair)
+
+-------------
+
+List: ---> when we need to arrange the elements in a sequence (index based manner) and duplicate elements are allowed.
+
+Set: -- when we need uniqueness (duplicate elements are not allowed)
+
+Queue:-- when we need to arrange the elements prior to processing(FIFO order is default, but we can manipulate)
+
+
+****Note:- from Java 1.5 LinkedList class also implements Deque interface.
+
+-------------------
+
+Collection Interface:
+================
+
+--It is the foundation upon which the collection f/w is built.
+
+--it declares some of the core methods that all collection classes will have.
+
+--these methods we can call on any collection f/w related classes objects.
+
+some of methods of collection interface:
+================================
+
+ int size();  // how many elements are there in that collection object.
+
+ boolean isEmpty();
+
+ boolean contains(Object obj);  //for searching any element.
+
+ Iterator iterator(); // it is inherited from Iterable interface
+
+ Object[] toArray();//to convert any collection object to normal array
+ 
+ T[] toArray(T[]); //convert only limited size element to array
+
+  boolean add(Object obj); // it is a most commonly used method, to add any element insdie any tupe of 
+							collection. 
+ boolean remove(Object obj);
+
+ boolean containsAll(Collection col);
+
+ boolean addAll(Collection col); copy all the element from one collection to our collection object
+ boolean removeAll(Collection col);
+
+
+ boolean retainAll(Collection col); // except supplied collection elements all other will be removed.
+ void clear(); // remove all the elements from the collectioj
+
+// these following 2 methods belongs to Object class 
+   boolean equals(Object obj); //compare two collection object
+   int hashCode(); // return the hashCode of collection obj
+
+//these methods introduced in java 1.8 to perform functional programming.
+  public boolean removeIf(java.util.function.Predicate<? super E>);
+  public java.util.Spliterator<E> spliterator();
+  public java.util.stream.Stream<E> stream();
+  public java.util.stream.Stream<E> parallelStream();
+
+------------------------------------------------------------------
+(day 14)
+
+List:
+=====
+
+--It is the child interface of Collection interface and declares the behavour of a collection to 
+preserve the sequence of an element.
+
+--elements can inserted and accessed by thier position using zero based index.
+
+--here insertion order will be preserved and duplicate elements are allowed.
+
+--in  addition to the Collection inteface methods ,List interface defines some of its own 
+methods also.
+
+public Object get(int index);
+
+public Object set(int index, Object newObject); it will return the overriden object
+
+public Object remove(int index); // will return the removed object.
+
+public int indexOf(Object obj);
+
+etc..
+
+***Note: Collection f/w does not support primitives, it only supports objects.
+
+add(Object  obj);
+
+-------------------------------------------------
+
+ArrayList:
+========
+
+--it is the implementation of the List interface.
+
+--it is basically a dynamic array (it dynamically increase and decrease in size).
+
+--ArrayList class is the best choice if our frequent operation is retrieval based on index.
+
+--duplicate are allowed.
+
+--null insertion is possible (multiple time also)
+
+example:
+
+
+ArrayList al=new ArrayList();
+
+System.out.println(al);//[]
+		
+
+Note: all the collection classes has overriden the toString() method internally. 
+so they will print the elements inside that collection in [] square bracket.
+
+--all the collection classes are like a container or bag which holds multiple objects.
+
+
+--in the above statement we have created an empty AL object with the default initial
+*capacity 10*.
+
+--once AL reaches to its max capacity then a new AL object will be 
+created in the memory automatically with the new capacity using following formula:
+
+**newCapacity = (currentCapacity * 3/2) +1;
+
+
+ArrayList al=new ArrayList(1000); // AL created with the initial capacity 1000;
+
+
+---------------------------------------------------------------------
+
+Autoboxing and Autounboxing:
+==========================
+
+this concept comes in java 1.5 version
+
+
+boxing: converting primitives into the object(box) it is known as boxing and reverse 
+is called unboxing.
+
+--8 primitive datatype.
+
+--for each primitive data types we have corresponding wrapper classes are there.
+
+--int --- java.lang.Integer
+--byte --- java.lang.Byte
+--char ---> java.lang.Charecter
+--boolean --> java.lang.Boolean
+--
+--
+
+--before java 1.5 inorder to add the primitives in the collection we need to wrap that primitives to their corresponding wrapper class object.
+
+int i=10;
+
+Integer i1= Integer.valueOf(i); //boxing
+
+int x=  i1.intValue(); //unboxing
+
+
+from java 1.5 onwords  we have a concept called autoboxing and autounboxing
+
+int i =10;
+
+Integer i1 = i;  //autoboxing
+
+int x=i1; // autounboxing
+
+
+*example: (coded- ArrayPb.java)
+
+
+
+		ArrayList al=new ArrayList();
+		
+		
+		
+		al.add("delhi");
+		al.add("mumbai");
+		al.add("chennai");
+		al.add("kolkata");
+		al.add(new A());
+		al.add(new Student(10, "Amit", 780));
+		al.add(null);
+		al.add(null);
+		al.add("delhi");
+		al.add(10);  // Integer 
+		al.add(true); //Boolean
+		al.add(10.55); //Double
+		
+		
+		
+		System.out.println(al);
+		System.out.println(al.size());
+		
+		
+		
+//		Object obj= al.get(1);
+//		String city= (String)obj;
+		
+		int x= (Integer)al.get(9);
+		
+		
+		System.out.println(x);
+		
+
+
+---in the above application our ArrayList object is not a type safe Collection object.
+
+--if our collection is not type safe collection then we can add any type of object at
+any position inside our collection.
+
+--here while getting the elements from the type unsafe collection every time we 
+need to downcast the element, which is not feasiable. there might be a change of 
+ClassCastException.
+
+--so in realtime, our collection should be type safe collection.
+--type safe collection means making our collection homogenious.
+
+
+**benifit of type safe collection:
+-------------------------------------
+
+1. if we try to add any other type of element then compiler will stop at compile time.
+
+2.we will get rid of downcasting problem.
+
+
+
+ArrayList<Object> al=new ArrayList<>();
+--taking the type of Object is simmillar to creating *type-unsafe* collection.
+
+example
+
+
+package com.masai;
+
+import java.util.ArrayList;
+
+public class Demo {
+
+	public static void main(String[] args) {
+		
+		ArrayList<String> al=new ArrayList<>();
+		
+		
+		
+		al.add("delhi");
+		al.add("mumbai");
+		al.add("chennai");
+		al.add("kolkata");
+		al.add("delhi");
+		al.add(10);
+		al.add(null);
+		
+		
+		
+		String s= al.get(2);
+		
+		System.out.println(s.toUpperCase());
+		
+
+	}
+
+}
+
+
+--the above type safe collection concept is called Genrics concept.
+
+--Generics concept also introduced in java 1.5 version
+
+//ArrayList class sudo code before generics
+
+class ArrayList implements List{
+
+public boolean add(Object obj){
+//adding the object obj to the AL.
+}
+
+public Object get(int index){
+it will return the obj to the specified index
+}
+
+//remaining methods.
+
+
+}
+
+
+//ArrayList class sudo code after generics
+
+class ArrayList<T> implements List{
+
+public boolean add(T t){
+//adding the object t to the AL.
+}
+
+public T get(int index){
+it will return the obj to the specified index
+}
+
+//remaining methods.
+}
+
+*example:
+
+ArrayList<String> al=new ArrayList<>(); // it is the List of String object
+
+
+ArrayList<Integer> al=new ArrayList<>(); // it is the List of Integer object
+
+ArrayList<Student> al=new ArrayList<>(); // it is the List of Student object
+
+**
+Demo.java:
+----------------
+
+package com.masai;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Demo {
+
+	public static void main(String[] args) {
+		
+	
+		Scanner sc= new Scanner(System.in);
+		
+		ArrayList<Student> students = new ArrayList<>();
+		
+		int count = 1;
+		
+		while(true) {
+			
+			
+			System.out.println("Enter details of Student "+(count++));
+			
+			System.out.println("Enter Roll");
+			int roll= sc.nextInt();
+			
+			System.out.println("Enter Name");
+			String name= sc.next();
+			
+			System.out.println("Enter Marks");
+			int marks= sc.nextInt();
+			
+			Student student = new Student(roll, name, marks);
+			
+			students.add(student);
+			
+			System.out.println("Student object added sucessfully...");
+			
+			System.out.println("Want more(y/n) ?");
+			String choice=  sc.next();
+
+			if(choice.equalsIgnoreCase("n"))
+				break;
+				
+		}
+		
+		
+		
+		for(Student student: students) {
+			
+			System.out.println("Roll is :"+student.getRoll());
+			System.out.println("Name is :"+student.getName());
+			System.out.println("Marks is :"+student.getMarks());
+			
+			System.out.println("================================");
+		}
+		
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,61 @@
+Q1) a) Why String is immutable in java and what is the difference between String and String Builder? And Write
+some of the methods of String class at least 5 with example.
+
+b) What is the difference between equals method and == operator in java? And what will be the output of the
+following code snippets and giving proper explanation.
+
+Code snippet 1 >
+String s1 = new String("abc");
+String s2 = new String("abc");
+System.out.println(s1.equals(s2));
+
+Code snippet 2 >
+StringBuilder sb1 = new StringBuilder("abc");
+StringBuilder sb2 = new StringBuilder("abc");
+System.out.println(sb1.equals(sb2));
+Code snippet 3 >
+
+String s1 = new String("abc");
+String s2 = new String("abc");
+System.out.println(s1==s2);
+
+
+Answer-->
+
+a)
+
+1.String is immutable in java because of security purpose. We create strings of username and password,
+ ans many other important information so it is necessary to make strings immutable.
+2.In java, there is multithreading thats why strings should be immutable.
+3.When we create strings that will be created in string pool area and instead of heap area we use that
+ so it is memory saving.
+4.And we can use that string from string pool area multi time by assigning a new variable,
+		these are the reasons for immutability of the string.
+		
+		
+b)
+
+Basically equals method compares values and == operator goes for address comparison
+
+code snippet 1-
+	this gives output as "true" because equals method will check the values of s1 and s2,
+and that are same "abc" so the result is true.
+
+code snippet 2-
+	this gives output as "false" because even the values are same but the address of the
+strings sb1 and sb2 are different and both are mutable so the comparison should be false.
+
+code snipet 3-
+	this gives output as "false" because the strings having different address in the
+heap area.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

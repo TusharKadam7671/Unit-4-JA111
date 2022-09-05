@@ -1,0 +1,14 @@
+Q2) Write the difference between JSE, JEE and JME?
+
+--Java SE is java standard which having several inbuild libraries, packages for creating 
+	simple console or ui based utility applications for desktop.
+
+
+--Java EE is java enterprise edition which having huge set of inbuild libraries, packages for creating 
+	enterprise application that deals with business level problems. 
+	Servlet, jsp, JMS etc. are technologies introduced in java ee 
+
+.
+--Java ME is java micro edition which having small set of libraries, packages for creating 
+	application s for small devices that run on low memory, processor like 
+	mobile, digital watch, automatic washing machine, fridge, tv etc.
